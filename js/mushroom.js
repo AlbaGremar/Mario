@@ -7,7 +7,7 @@ class Mushroom {
       this.y0 = 390
       this.w = 35
       this.h = 45
-      this.vx = -2
+      this.vx = -4
       this.vy = 0
       this.ax = 0
       this.ay = 1
@@ -17,7 +17,7 @@ class Mushroom {
       this.img.frames = 2
       this.img.frameIndex = 0
       this.tick = 0
-  
+      
     }
 
     draw() {

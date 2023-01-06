@@ -2,11 +2,13 @@ class Mario {
   constructor(ctx) {
     this.ctx = ctx
 
-    this.x = 50
+    this.x = 200
     this.y = 0
+
     this.y0 = 380
     this.w = 40
     this.h = 55
+
     this.vx = 0
     this.vy = 0
     this.ax = 0
@@ -24,14 +26,15 @@ class Mario {
     this.bullets = []
     this.status = {
       jump: false,
-      walk: true
+      walk: true,
+      back: false
     }
   }
 
   shoot() {
     const x = this.x + this.w
     const y = this.y + this.h / 2
-    const bullet = new Bullet(this.ctx, x, y)
+    const bullet = new Bullet(this.ctx, x, y, this.vx >= 0 ? 1 : -1)
     this.bullets.push(bullet)
   }
 
@@ -55,6 +58,18 @@ class Mario {
         0,
         0,
         this.img.width,
+        this.img.height,
+        this.x,
+        this.y,
+        this.w,
+        this.h
+      )
+    } else if (this.status.back){
+      this.ctx.drawImage(
+        this.img,
+        this.img.frameIndex * this.img.width / this.img.frames,
+        0,
+        this.img.width / this.img.frames,
         this.img.height,
         this.x,
         this.y,
@@ -93,7 +108,10 @@ class Mario {
       this.vy = 0
       this.status.walk = true;
       this.status.jump = false;
-      this.img.src = 'assets/img/mario_walk.png'
+      if (this.vx >= 0) {
+        this.img.src = 'assets/img/mario_walk.png'
+      }
+      this.img.frames = 3
     }
 
     if (this.x <= 0) {
@@ -112,13 +130,27 @@ class Mario {
 
   jump() {
     if (this.y === this.y0) {
+      this.img.frames = 1
+      this.img.frameIndex = 0
+      this.img.src = "assets/img/mario_jump.png"
       this.jumpAudio.play()
       this.vy = -10
-      this.img.src = "assets/img/mario_jump.png"
       this.status.jump = true;
       this.status.walk = false;
+      this.status.back = false;
     }
     
+  }
+  back() {
+    if (this.y === this.y0) {
+      this.vx = -5
+      this.img.src = "assets/img/mario_walkback.png"
+      this.img.frames = 3
+      this.img.frameIndex = 0
+      this.status.back = true;
+      this.status.walk = false;
+      this.status.jump = false;
+    }
   }
 
   onKeyDown(key) {
@@ -127,7 +159,9 @@ class Mario {
         this.vx = 5
         break;
       case LEFT:
-        this.vx = -5
+        if(!this.status.jump) {
+          this.back();
+        }
         break;
       case UP:
         this.jump();
@@ -142,7 +176,14 @@ class Mario {
     switch(key) {
       case RIGHT:
       case LEFT:
+        if(!this.status.jump) {
+          this.vx = 0
+          this.img.src = "assets/img/mario_walk.png"
+        }
+        break;
+      case UP:
         this.vx = 0
+        this.img.src = "assets/img/mario_jump.png"
         break;
     }
   }

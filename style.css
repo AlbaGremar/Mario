@@ -5,19 +5,127 @@ html, body {
     padding: 0;
     background: black;
   }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   
   .container {
     text-align: center;
-    padding: 20px;
+    width: 1000px;
+    height: 500px;
+    background: url(assets/img/fondo1-2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
   }
+  #welcome {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  #gameover {
+    display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-align-content: stretch;
+      -ms-flex-line-pack: stretch;
+      align-content: stretch;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      display: none;
+      margin-top: 13%;
+    }
   
   h1 {
+    font-size: 50px;
+    font-family: 'Press Start 2P', cursive;
     color: white;
+    margin: 20px 0px;
+    }
+  h2 {
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+    margin: 20px 0px;
+    font-size: 20px;
   }
   
   canvas {
-    border: 1px solid white;
     border-radius: 4px;
-    /* display: none; */
+    display: none;
+  }
+
+  .puntuacion, .puntuacionfin{
+    position: absolute;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    user-select: none;
+    display: inline;
+    margin-left: 30px;
+    cursor: pointer;
+  }
+  .puntuacionfin {
+    position: initial;
   }
   
+  #start-btn,  #re-start-btn{
+    background: black;
+    border: none;
+    color: white;
+    animation: pulse 1.5s infinite;
+    margin-bottom: 100px;
+    padding: 20px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px;
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: .25rem;
+    min-width: 200px;
+    text-decoration: none;
+    box-shadow:  0 0 0 0 rgba (0, 0, 0, .5);
+    animation: pulse 1.5s infinite;
+  }
+  #welcome img {
+    max-width: 80%;
+    margin-top: 50px;
+  }
+  @keyframes pulse {
+    0% {
+      transform: scale(.70);
+      box-shadow: 0 0 0 0 rgba ( 0, 0, 0, .1);
+    }
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 100px rgba ( 0, 0, 0, 0);
+    }
+    100% {
+      transform: scale(.70);
+      box-shadow: 0 0 0 0 rgba ( 0, 0, 0, 0);
+    }
+  }

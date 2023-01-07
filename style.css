@@ -60,7 +60,7 @@ html, body {
       -ms-flex-align: center;
       align-items: center;
       display: none;
-      margin-top: 13%;
+      margin-top: 20%;
     }
   
   h1 {
@@ -86,7 +86,7 @@ html, body {
     color: white;
     font-family: 'Press Start 2P', cursive;
     user-select: none;
-    display: inline;
+    display: none;
     margin-left: 30px;
     cursor: pointer;
   }

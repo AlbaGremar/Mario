@@ -7,14 +7,13 @@ class Coin {
       this.y0 = 290
       this.w = 21
       this.h = 30
-      this.vx = -2
+      this.vx = -3
       this.vy = 0
       this.ax = 0
       this.ay = 1
   
       this.img = new Image()
       this.img.src = 'assets/img/coin.png'
-      this.tick = 0
     }
 
     draw() {
